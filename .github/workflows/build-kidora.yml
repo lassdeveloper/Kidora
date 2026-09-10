@@ -40,6 +40,36 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Fix SQLite imports
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          repositories = [
+              "badge_repository.dart",
+              "daily_limit_repository.dart",
+              "exercise_repository.dart",
+              "lesson_repository.dart",
+              "progress_repository.dart",
+              "settings_repository.dart",
+              "subject_repository.dart",
+              "world_repository.dart",
+          ]
+
+          import_line = "import 'package:sqflite/sqflite.dart';\n"
+
+          for filename in repositories:
+              path = Path("lib/repositories") / filename
+              content = path.read_text()
+
+              if "ConflictAlgorithm" in content and "package:sqflite/sqflite.dart" not in content:
+                  path.write_text(import_line + content)
+                  print(f"Fixed: {path}")
+              else:
+                  print(f"OK: {path}")
+
+          PY
+
       - name: Analyze KIDORA
         run: flutter analyze
 
