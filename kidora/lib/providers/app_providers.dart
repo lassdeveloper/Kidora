@@ -21,6 +21,7 @@ import '../repositories/badge_repository.dart';
 import '../repositories/game_repository.dart';
 import '../repositories/settings_repository.dart';
 import '../repositories/daily_limit_repository.dart';
+import '../core/services/badge_service.dart';
 
 // --- 1. PROVIDERS DES REPOSITORIES ---
 final childRepositoryProvider = Provider((ref) => ChildRepository());
@@ -33,6 +34,7 @@ final badgeRepositoryProvider = Provider((ref) => BadgeRepository());
 final gameRepositoryProvider = Provider((ref) => GameRepository());
 final settingsRepositoryProvider = Provider((ref) => SettingsRepository());
 final dailyLimitRepositoryProvider = Provider((ref) => DailyLimitRepository());
+final badgeServiceProvider = Provider((ref) => BadgeService(ref.watch(badgeRepositoryProvider)));
 
 // --- 2. LISTE DES ENFANTS ---
 class ChildrenNotifier extends StateNotifier<AsyncValue<List<Child>>> {

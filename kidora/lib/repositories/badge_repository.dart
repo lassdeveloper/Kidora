@@ -1,3 +1,4 @@
+import 'package:sqflite/sqflite.dart';
 import '../core/database/database_helper.dart';
 import '../models/badge.dart';
 import '../models/child_badge.dart';

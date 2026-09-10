@@ -32,4 +32,20 @@ class AppSettings {
       themeDark: (map['theme_dark'] as int? ?? 0) == 1,
     );
   }
+
+  AppSettings copyWith({
+    int? childId,
+    String? language,
+    bool? soundEnabled,
+    bool? musicEnabled,
+    bool? themeDark,
+  }) {
+    return AppSettings(
+      childId: childId ?? this.childId,
+      language: language ?? this.language,
+      soundEnabled: soundEnabled ?? this.soundEnabled,
+      musicEnabled: musicEnabled ?? this.musicEnabled,
+      themeDark: themeDark ?? this.themeDark,
+    );
+  }
 }

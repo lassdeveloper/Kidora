@@ -477,8 +477,8 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
   Widget _buildSettingsTab(Child? activeChild) {
     final settings = ref.watch(settingsProvider);
 
-    final soundEnabled = settings?.soundEnabled == 1;
-    final musicEnabled = settings?.musicEnabled == 1;
+    final soundEnabled = settings?.soundEnabled ?? true;
+    final musicEnabled = settings?.musicEnabled ?? true;
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -496,7 +496,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
             onChanged: (val) {
               if (settings != null) {
                 ref.read(settingsProvider.notifier).updateSettings(
-                  settings.copyWith(soundEnabled: val ? 1 : 0),
+                  settings.copyWith(soundEnabled: val),
                 );
               }
             },
@@ -509,7 +509,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
             onChanged: (val) {
               if (settings != null) {
                 ref.read(settingsProvider.notifier).updateSettings(
-                  settings.copyWith(musicEnabled: val ? 1 : 0),
+                  settings.copyWith(musicEnabled: val),
                 );
               }
             },

@@ -51,9 +51,14 @@ class AppRoutes {
       case createProfile:
         return MaterialPageRoute(builder: (_) => const CreateProfileScreen());
       case avatar:
-        return MaterialPageRoute(builder: (_) => const AvatarSelectionScreen());
+        final childName = settings.arguments as String? ?? '';
+        return MaterialPageRoute(builder: (_) => AvatarSelectionScreen(childName: childName));
       case ageLevel:
-        return MaterialPageRoute(builder: (_) => const AgeLevelSelectionScreen());
+        final args = settings.arguments as Map<String, dynamic>? ?? {};
+        return MaterialPageRoute(builder: (_) => AgeLevelSelectionScreen(
+          childName: args['name'] as String? ?? '',
+          avatar: args['avatar'] as String? ?? '🐱',
+        ));
       case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case worlds:
@@ -61,13 +66,13 @@ class AppRoutes {
       
       // Routes des mondes matières
       case maths:
-        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'math', subjectName: 'Mathématiques'));
+        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'math'));
       case french:
-        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'french', subjectName: 'Français'));
+        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'french'));
       case science:
-        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'science', subjectName: 'Sciences'));
+        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'science'));
       case logic:
-        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'logic', subjectName: 'Logique'));
+        return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'logic'));
 
       case lesson:
         final args = settings.arguments as Lesson;

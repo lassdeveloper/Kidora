@@ -271,9 +271,12 @@ class SubjectWorldScreen extends ConsumerWidget {
                     Positioned(
                       right: 20,
                       bottom: 40,
-                      child: Text(
-                        subjectEmoji,
-                        style: const TextStyle(fontSize: 90, opacity: 0.25),
+                      child: Opacity(
+                        opacity: 0.25,
+                        child: Text(
+                          subjectEmoji,
+                          style: const TextStyle(fontSize: 90),
+                        ),
                       ),
                     ),
                   ],
@@ -311,7 +314,7 @@ class SubjectWorldScreen extends ConsumerWidget {
                           children: [
                             const Text(
                               'Progression Globale',
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black80),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xCC000000)),
                             ),
                             const SizedBox(height: 4),
                             Text(

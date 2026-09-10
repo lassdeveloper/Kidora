@@ -396,7 +396,7 @@ class _AgeLevelSelectionScreenState extends ConsumerState<AgeLevelSelectionScree
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: isSelected ? const Color(0xFF011627) : Colors.black80,
+                                  color: isSelected ? const Color(0xFF011627) : const Color(0xCC000000),
                                 ),
                               ),
                             ),

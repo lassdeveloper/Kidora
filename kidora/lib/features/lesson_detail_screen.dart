@@ -156,7 +156,7 @@ class LessonDetailScreen extends ConsumerWidget {
                             Expanded(
                               child: Text(
                                 'Prends ton temps, lis bien la question et tout se passera super bien ! Tu es capable de tout réussir ! 💪',
-                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black80),
+                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xCC000000)),
                               ),
                             ),
                           ],
