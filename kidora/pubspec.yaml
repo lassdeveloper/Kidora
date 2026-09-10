@@ -1,0 +1,48 @@
+name: kidora
+description: "KIDORA — Apprendre. Jouer. Explorer. Application éducative 100% hors-ligne pour enfants de 4 à 12 ans."
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.5
+  
+  # Gestion d'état
+  flutter_riverpod: ^2.3.6
+  
+  # Base de données locale SQLite
+  sqflite: ^2.2.8
+  path: ^1.8.3
+  
+  # Sons locaux
+  audioplayers: ^5.2.1
+  
+  # Animations fluides
+  flutter_animate: ^4.2.0
+  
+  # Graphiques de progression parentale
+  fl_chart: ^0.63.0
+  
+  # Préférences locales
+  shared_preferences: ^2.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/lessons/maths/
+    - assets/lessons/french/
+    - assets/lessons/science/
+    - assets/lessons/logic/
+    - assets/audio/feedback/
+    - assets/audio/instructions/
+    - assets/images/avatars/
+    - assets/images/worlds/

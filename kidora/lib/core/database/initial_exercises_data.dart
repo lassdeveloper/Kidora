@@ -1,0 +1,1480 @@
+import '../../models/subject.dart';
+import '../../models/world.dart';
+import '../../models/lesson.dart';
+import '../../models/exercise.dart';
+
+class InitialExercisesData {
+  static List<Subject> getSubjects() {
+    return [
+      Subject(id: 'maths', name: 'Mathématiques', color: '0xFFFF5964', icon: '📐'),
+      Subject(id: 'french', name: 'Français', color: '0xFF35A7FF', icon: '📖'),
+      Subject(id: 'science', name: 'Sciences', color: '0xFF38B000', icon: '🔬'),
+      Subject(id: 'logic', name: 'Logique', color: '0xFF7000FF', icon: '🧩'),
+    ];
+  }
+
+  static List<World> getWorlds() {
+    return [
+      World(id: 'world_maths', subjectId: 'maths', name: 'Île des Mathématiques', requiredLevel: 1),
+      World(id: 'world_french', subjectId: 'french', name: 'Forêt du Français', requiredLevel: 1),
+      World(id: 'world_science', subjectId: 'science', name: 'Labo des Sciences', requiredLevel: 2),
+      World(id: 'world_logic', subjectId: 'logic', name: 'Royaume de la Logique', requiredLevel: 3),
+    ];
+  }
+
+  static List<Lesson> getLessons() {
+    return [
+      // Maths Lessons (5)
+      Lesson(id: 'math_l1', worldId: 'world_maths', title: 'Addition & Soustraction', description: 'Apprends à compter, additionner et soustraire de petits nombres !', difficulty: 1),
+      Lesson(id: 'math_l2', worldId: 'world_maths', title: 'Tables de Multiplication', description: 'Découvre et mémorise les tables de multiplication.', difficulty: 2),
+      Lesson(id: 'math_l3', worldId: 'world_maths', title: 'Division & Partage', description: 'Partage des objets équitablement entre amis.', difficulty: 2),
+      Lesson(id: 'math_l4', worldId: 'world_maths', title: 'Géométrie & Formes', description: 'Reconnais les formes géométriques, leurs côtés et l\'espace.', difficulty: 1),
+      Lesson(id: 'math_l5', worldId: 'world_maths', title: 'Problèmes de Logique Mathématique', description: 'Résous de petits problèmes de la vie quotidienne.', difficulty: 3),
+
+      // French Lessons (5)
+      Lesson(id: 'french_l1', worldId: 'world_french', title: 'Alphabet & Sons', description: 'Les voyelles, les consonnes et le découpage syllabique.', difficulty: 1),
+      Lesson(id: 'french_l2', worldId: 'world_french', title: 'Vocabulaire & Synonymes', description: 'Enrichis ton vocabulaire et trouve les contraires.', difficulty: 2),
+      Lesson(id: 'french_l3', worldId: 'world_french', title: 'Grammaire & Conjugaison', description: 'Identifie les natures de mots et conjugue au présent/futur.', difficulty: 3),
+      Lesson(id: 'french_l4', worldId: 'world_french', title: 'Orthographe & Dictée', description: 'Écris les mots sans fautes (accords et pluriels).', difficulty: 2),
+      Lesson(id: 'french_l5', worldId: 'world_french', title: 'Lecture & Compréhension', description: 'Lis de petites histoires et résous des énigmes textuelles.', difficulty: 1),
+
+      // Science Lessons (5)
+      Lesson(id: 'science_l1', worldId: 'world_science', title: 'Le Corps Humain', description: 'Découvre les organes et les 5 sens.', difficulty: 1),
+      Lesson(id: 'science_l2', worldId: 'world_science', title: 'Le Système Solaire', description: 'Voyage autour du Soleil, de la Terre et de la Lune.', difficulty: 2),
+      Lesson(id: 'science_l3', worldId: 'world_science', title: 'Les Animaux & Plantes', description: 'Découvre le règne animal, la faune, et le cycle de vie végétale.', difficulty: 1),
+      Lesson(id: 'science_l4', worldId: 'world_science', title: 'Les États de la Matière', description: 'Glace, eau liquide, vapeur et phénomènes météo.', difficulty: 2),
+      Lesson(id: 'science_l5', worldId: 'world_science', title: 'Environnement & Nature', description: 'Apprends à protéger notre planète, trier et recycler.', difficulty: 1),
+
+      // Logic Lessons (5)
+      Lesson(id: 'logic_l1', worldId: 'world_logic', title: 'Suites & Séquences', description: 'Complète les motifs et les séries logiques.', difficulty: 1),
+      Lesson(id: 'logic_l2', worldId: 'world_logic', title: 'Énigmes de Déduction', description: 'Devine l\'intrus et déduis d\'après les indices.', difficulty: 2),
+      Lesson(id: 'logic_l3', worldId: 'world_logic', title: 'Labyrinthes & Puzzles', description: 'Résous des puzzles spatiaux et faces géométriques.', difficulty: 2),
+      Lesson(id: 'logic_l4', worldId: 'world_logic', title: 'Analyse & Mémoire', description: 'Rétention d\'informations et déductions logiques.', difficulty: 3),
+      Lesson(id: 'logic_l5', worldId: 'world_logic', title: 'Associations & Couleurs', description: 'Mélanges chromatiques et classements de poids.', difficulty: 1),
+    ];
+  }
+
+  static List<Exercise> getExercises() {
+    final List<Exercise> list = [];
+    _addMaths(list);
+    _addFrench(list);
+    _addSciences(list);
+    _addLogic(list);
+    return list;
+  }
+
+  static void _addMaths(List<Exercise> list) {
+    // --- MATHEMATIQUES (25 EXERCICES) ---
+    // Lesson 1 : Addition & Soustraction / Nombres
+    list.add(Exercise(
+      id: "math_count_1",
+      lessonId: "math_l1",
+      category: "compter",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Combien y a-t-il de pommes ici ? 🍎🍎🍎",
+      options: ["2", "3", "4", "5"],
+      correctAnswer: "3",
+      explanation: "Bravo ! En comptant une par une, on a : une, deux, et trois pommes !",
+      visualData: "🍎🍎🍎",
+    ));
+    list.add(Exercise(
+      id: "math_count_2",
+      lessonId: "math_l1",
+      category: "compter",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Trouve le nombre de ballons de foot : ⚽⚽⚽⚽⚽",
+      options: ["3", "4", "5", "6"],
+      correctAnswer: "5",
+      explanation: "Super ! Il y a bien 5 ballons de foot.",
+      visualData: "⚽⚽⚽⚽⚽",
+    ));
+    list.add(Exercise(
+      id: "math_add_1",
+      lessonId: "math_l1",
+      category: "addition",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Combien font 2 + 3 ? (Aide-toi des étoiles : ⭐⭐ + ⭐⭐⭐)",
+      options: ["4", "5", "6", "7"],
+      correctAnswer: "5",
+      explanation: "2 plus 3 font 5 ! Si on réunit les étoiles, on en a 5 au total.",
+      visualData: "⭐⭐ + ⭐⭐⭐",
+    ));
+    list.add(Exercise(
+      id: "math_add_2",
+      lessonId: "math_l1",
+      category: "addition",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "input",
+      question: "Calcule l'addition suivante : 4 + 4",
+      options: [],
+      correctAnswer: "8",
+      explanation: "Excellent ! 4 + 4 font 8.",
+      visualData: "🍀🍀🍀🍀 + 🍀🍀🍀🍀",
+    ));
+    list.add(Exercise(
+      id: "math_add_3",
+      lessonId: "math_l1",
+      category: "addition",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "input",
+      question: "Calcule l'addition suivante : 12 + 15",
+      options: [],
+      correctAnswer: "27",
+      explanation: "Superbe ! 12 + 15 font 27. On additionne d'abord les unités (2+5=7) puis les dizaines (1+1=2).",
+    ));
+    list.add(Exercise(
+      id: "math_sub_1",
+      lessonId: "math_l1",
+      category: "soustraction",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Tu as 5 bonbons. Tu en manges 2. Combien t'en reste-t-il ? 🍬🍬🍬🍬🍬",
+      options: ["1", "2", "3", "4"],
+      correctAnswer: "3",
+      explanation: "C'est ça ! 5 - 2 = 3. Il te reste 3 bonbons délicieux.",
+      visualData: "🍬🍬🍬",
+    ));
+    list.add(Exercise(
+      id: "math_sub_2",
+      lessonId: "math_l1",
+      category: "soustraction",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "input",
+      question: "Calcule la soustraction : 15 - 6",
+      options: [],
+      correctAnswer: "9",
+      explanation: "Correct ! 15 - 6 = 9. Car 9 + 6 font 15.",
+    ));
+    list.add(Exercise(
+      id: "math_sub_3",
+      lessonId: "math_l1",
+      category: "soustraction",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Calcule la soustraction complexe : 45 - 19",
+      options: [],
+      correctAnswer: "26",
+      explanation: "Magnifique ! 45 - 19 = 26.",
+    ));
+    list.add(Exercise(
+      id: "math_count_3",
+      lessonId: "math_l1",
+      category: "compter",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quel nombre vient juste après le 7 ?",
+      options: ["5", "6", "8", "9"],
+      correctAnswer: "8",
+      explanation: "On compte : 1, 2, 3, 4, 5, 6, 7, puis 8 ! C'est le 8 !",
+    ));
+    list.add(Exercise(
+      id: "math_add_4",
+      lessonId: "math_l1",
+      category: "addition",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Combien font 5 + 0 ?",
+      options: ["0", "5", "10", "50"],
+      correctAnswer: "5",
+      explanation: "Quand on ajoute zéro, la quantité ne change pas. 5 + 0 font toujours 5 !",
+    ));
+    list.add(Exercise(
+      id: "math_sub_4",
+      lessonId: "math_l1",
+      category: "soustraction",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "input",
+      question: "Complète le trou : 18 - ___ = 10",
+      options: [],
+      correctAnswer: "8",
+      explanation: "C'est bien 8 ! 18 moins 8 égale 10.",
+    ));
+
+    // Lesson 2 : Tables de Multiplication
+    list.add(Exercise(
+      id: "math_mult_1",
+      lessonId: "math_l2",
+      category: "multiplication",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Combien font 3 x 4 ? (3 groupes de 4 coeurs : ❤️❤️❤️❤️ / ❤️❤️❤️❤️ / ❤️❤️❤️❤️)",
+      options: ["8", "10", "12", "14"],
+      correctAnswer: "12",
+      explanation: "3 fois 4 font bien 12 ! C'est l'addition répétée de 4 + 4 + 4.",
+      visualData: "❤️❤️❤️❤️ × 3",
+    ));
+    list.add(Exercise(
+      id: "math_mult_2",
+      lessonId: "math_l2",
+      category: "multiplication",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "input",
+      question: "Calcule la multiplication suivante : 5 x 6",
+      options: [],
+      correctAnswer: "30",
+      explanation: "Exact ! 5 fois 6 font 30.",
+    ));
+    list.add(Exercise(
+      id: "math_mult_3",
+      lessonId: "math_l2",
+      category: "multiplication",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Combien font 9 x 8 ?",
+      options: [],
+      correctAnswer: "72",
+      explanation: "Superbe ! 9 fois 8 égale 72. Ta table de 8 et 9 est maîtrisée !",
+    ));
+    list.add(Exercise(
+      id: "math_mult_4",
+      lessonId: "math_l2",
+      category: "multiplication",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Combien font 12 x 5 ?",
+      options: [],
+      correctAnswer: "60",
+      explanation: "Bravo ! 12 x 5 = 60. (10 x 5 = 50, et 2 x 5 = 10. 50 + 10 = 60).",
+    ));
+
+    // Lesson 3 : Division & Partage
+    list.add(Exercise(
+      id: "math_div_1",
+      lessonId: "math_l3",
+      category: "division",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Partage 6 ballons entre 2 enfants. Combien de ballons aura chaque enfant ? 🎈🎈🎈 🎈🎈🎈",
+      options: ["2", "3", "4", "5"],
+      correctAnswer: "3",
+      explanation: "Oui ! 6 divisé par 2 font 3. Chaque enfant aura 3 ballons.",
+      visualData: "🎈🎈🎈 | 🎈🎈🎈",
+    ));
+    list.add(Exercise(
+      id: "math_div_2",
+      lessonId: "math_l3",
+      category: "division",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Si on divise 24 gâteaux entre 4 amis, combien chacun en reçoit-il ?",
+      options: [],
+      correctAnswer: "6",
+      explanation: "Bravo ! 24 divisé par 4 égale 6. Car 6 x 4 = 24 !",
+    ));
+    list.add(Exercise(
+      id: "math_div_3",
+      lessonId: "math_l3",
+      category: "division",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Calcule la division suivante : 100 ÷ 5",
+      options: [],
+      correctAnswer: "20",
+      explanation: "Formidable ! 100 divisé par 5 font 20.",
+    ));
+
+    // Lesson 4 : Géométrie & Formes
+    list.add(Exercise(
+      id: "math_geom_1",
+      lessonId: "math_l4",
+      category: "géométrie",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "shapes",
+      question: "Quelle forme géométrique possède trois côtés ?",
+      options: ["Cercle 🔵", "Carré 🟩", "Triangle 🔺", "Étoile ⭐"],
+      correctAnswer: "Triangle 🔺",
+      explanation: "Le triangle est la forme à 3 côtés (tri-angle) !",
+      visualData: "🔺",
+    ));
+    list.add(Exercise(
+      id: "math_geom_2",
+      lessonId: "math_l4",
+      category: "géométrie",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Comment appelle-t-on une forme avec 4 côtés égaux et 4 angles droits ?",
+      options: ["Un rectangle", "Un triangle", "Un carré", "Un cercle"],
+      correctAnswer: "Un carré",
+      explanation: "Le carré possède 4 côtés de même longueur et 4 angles droits.",
+      visualData: "🟩",
+    ));
+    list.add(Exercise(
+      id: "math_geom_3",
+      lessonId: "math_l4",
+      category: "géométrie",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "true_false",
+      question: "Vrai ou Faux : Un rectangle possède toujours ses quatre côtés égaux.",
+      options: ["Vrai", "Faux"],
+      correctAnswer: "Faux",
+      explanation: "Faux ! Un rectangle a ses côtés opposés égaux, mais pas les quatre. C'est le carré qui a 4 côtés égaux.",
+    ));
+
+    // Lesson 5 : Problèmes de Logique Mathématique
+    list.add(Exercise(
+      id: "math_prob_1",
+      lessonId: "math_l5",
+      category: "problèmes",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Léa a 3 billes. Tom lui donne 4 billes. Combien Léa a-t-elle de billes en tout ?",
+      options: ["5", "6", "7", "8"],
+      correctAnswer: "7",
+      explanation: "Léa a 3 + 4 = 7 billes en tout !",
+      visualData: "🔵🔵🔵 + 🔵🔵🔵🔵",
+    ));
+    list.add(Exercise(
+      id: "math_prob_2",
+      lessonId: "math_l5",
+      category: "problèmes",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "input",
+      question: "Un boulanger prépare 20 croissants. Il en vend 7 le matin. Combien lui reste-t-il de croissants ?",
+      options: [],
+      correctAnswer: "13",
+      explanation: "Il reste 20 - 7 = 13 croissants au boulanger.",
+    ));
+    list.add(Exercise(
+      id: "math_prob_3",
+      lessonId: "math_l5",
+      category: "problèmes",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Un paquet contient 6 biscuits. Julie achète 4 paquets. Elle donne 2 biscuits à sa maman. Combien lui reste-t-il de biscuits ?",
+      options: ["20", "22", "24", "26"],
+      correctAnswer: "22",
+      explanation: "Julie achète 6 x 4 = 24 biscuits. Elle en retire 2, il lui reste donc 24 - 2 = 22 biscuits.",
+    ));
+    list.add(Exercise(
+      id: "math_prob_4",
+      lessonId: "math_l5",
+      category: "problèmes",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Un fermier a 3 poules. Chaque poule pond 2 œufs par jour. Combien d'œufs le fermier a-t-il en un jour ?",
+      options: ["3", "5", "6", "8"],
+      correctAnswer: "6",
+      explanation: "Chaque poule en pond 2 : 2 + 2 + 2 = 6 œufs au total !",
+    ));
+  }
+
+  static void _addFrench(List<Exercise> list) {
+    // --- FRANCAIS (25 EXERCICES) ---
+    // Lesson 1 : Alphabet & Sons
+    list.add(Exercise(
+      id: "french_alpha_1",
+      lessonId: "french_l1",
+      category: "alphabet",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quelle lettre est un 'A' ?",
+      options: ["O", "B", "A", "M"],
+      correctAnswer: "A",
+      explanation: "C'est la lettre A ! C'est la première lettre de l'alphabet, comme dans ANANAS.",
+      visualData: "🅰️",
+    ));
+    list.add(Exercise(
+      id: "french_alpha_2",
+      lessonId: "french_l1",
+      category: "alphabet",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quelle lettre vient juste après le 'A' ?",
+      options: ["B", "C", "D", "Z"],
+      correctAnswer: "B",
+      explanation: "A puis B ! Le B comme dans Ballon 🎈.",
+    ));
+    list.add(Exercise(
+      id: "french_syll_1",
+      lessonId: "french_l1",
+      category: "syllabes",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Assemble les syllabes : MA + MI + NE. Quel mot obtiens-tu ?",
+      options: ["Mamie", "Mamine", "Machine", "Marmite"],
+      correctAnswer: "Mamine",
+      explanation: "En assemblant MA - MI - NE, on lit : Mamine !",
+    ));
+    list.add(Exercise(
+      id: "french_syll_2",
+      lessonId: "french_l1",
+      category: "syllabes",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Combien y a-t-il de syllabes dans le mot 'CHOC-O-LAT' ?",
+      options: ["1", "2", "3", "4"],
+      correctAnswer: "3",
+      explanation: "On tape dans les mains : CHO-CO-LAT. Il y a 3 syllabes !",
+      visualData: "🍫",
+    ));
+    list.add(Exercise(
+      id: "french_alpha_3",
+      lessonId: "french_l1",
+      category: "letters",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Trouve la lettre minuscule 'g' :",
+      options: ["q", "p", "g", "d"],
+      correctAnswer: "g",
+      explanation: "C'est la lettre 'g' en minuscule script.",
+    ));
+    list.add(Exercise(
+      id: "french_syll_3",
+      lessonId: "french_l1",
+      category: "syllabes",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Quelle syllabe manque-t-il pour faire le mot 'CA-___-TE' (légume orange) ?",
+      options: ["BO", "RO", "MA", "LO"],
+      correctAnswer: "RO",
+      explanation: "Pour faire CA-RO-TE (carotte), il manque 'RO' !",
+      visualData: "🥕",
+    ));
+
+    // Lesson 2 : Vocabulaire & Synonymes
+    list.add(Exercise(
+      id: "french_vocab_1",
+      lessonId: "french_l2",
+      category: "vocabulaire",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quel animal fait 'Meuh' ? 🐂",
+      options: ["Le chien", "Le chat", "La vache", "Le mouton"],
+      correctAnswer: "La vache",
+      explanation: "La vache fait 'Meuh' !",
+      visualData: "🐄",
+    ));
+    list.add(Exercise(
+      id: "french_vocab_2",
+      lessonId: "french_l2",
+      category: "vocabulaire",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Trouve le contraire du mot 'Grand' :",
+      options: ["Fort", "Petit", "Mince", "Joli"],
+      correctAnswer: "Petit",
+      explanation: "Le contraire de Grand est Petit !",
+    ));
+    list.add(Exercise(
+      id: "french_vocab_3",
+      lessonId: "french_l2",
+      category: "vocabulaire",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quel est le synonyme (mot ayant le même sens) de 'Magnifique' ?",
+      options: ["Laid", "Sombre", "Superbe", "Triste"],
+      correctAnswer: "Superbe",
+      explanation: "Magnifique et Superbe ont le même sens !",
+    ));
+    list.add(Exercise(
+      id: "french_vocab_4",
+      lessonId: "french_l2",
+      category: "vocabulaire",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quel fruit est jaune et s'épluche ? 🍌",
+      options: ["La fraise", "La banane", "La cerise", "La pomme"],
+      correctAnswer: "La banane",
+      explanation: "La banane est bien un fruit jaune qui s'épluche !",
+      visualData: "🍌",
+    ));
+
+    // Lesson 3 : Grammaire & Conjugaison
+    list.add(Exercise(
+      id: "french_gram_1",
+      lessonId: "french_l3",
+      category: "grammaire",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Dans 'La pomme est rouge', quel mot est le verbe ?",
+      options: ["La", "pomme", "est", "rouge"],
+      correctAnswer: "est",
+      explanation: "'est' est le verbe (c'est le verbe être au présent de l'indicatif).",
+    ));
+    list.add(Exercise(
+      id: "french_gram_2",
+      lessonId: "french_l3",
+      category: "grammaire",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Identifie la nature du mot souligné : 'Le *petit* chat dort.'",
+      options: ["Un verbe", "Un nom", "Un adjectif", "Un déterminant"],
+      correctAnswer: "Un adjectif",
+      explanation: "Le mot 'petit' qualifie le chat, c'est donc un adjectif qualificatif.",
+    ));
+    list.add(Exercise(
+      id: "french_gram_3",
+      lessonId: "french_l3",
+      category: "grammaire",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quel est le pronom personnel sujet de la troisième personne du pluriel ?",
+      options: ["Je", "Nous", "Ils / Elles", "Vous"],
+      correctAnswer: "Ils / Elles",
+      explanation: "La 3ème personne du pluriel est 'Ils' ou 'Elles'.",
+    ));
+    list.add(Exercise(
+      id: "french_conj_1",
+      lessonId: "french_l3",
+      category: "conjugaison",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Conjugue le verbe chanter au présent : 'Tu ______ une belle chanson.'",
+      options: ["chantes", "chante", "chantent", "chantez"],
+      correctAnswer: "chantes",
+      explanation: "Avec 'tu', les verbes en -er prennent toujours un 's' au présent : tu chantes.",
+    ));
+    list.add(Exercise(
+      id: "french_conj_2",
+      lessonId: "french_l3",
+      category: "conjugaison",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Quel est l'infinitif du verbe dans : 'Nous faisons nos devoirs.' ?",
+      options: ["Faire", "Faisons", "Faiseur", "Finir"],
+      correctAnswer: "Faire",
+      explanation: "'faisons' vient du verbe Faire (troisième groupe).",
+    ));
+    list.add(Exercise(
+      id: "french_conj_3",
+      lessonId: "french_l3",
+      category: "conjugaison",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Conjugue le verbe avoir au futur simple : 'Demain, ils ______ un vélo.'",
+      options: ["ont", "auront", "avaient", "aurons"],
+      correctAnswer: "auront",
+      explanation: "Au futur, le verbe avoir fait : ils auront.",
+    ));
+    list.add(Exercise(
+      id: "french_gram_4",
+      lessonId: "french_l3",
+      category: "grammaire",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Quel déterminant est féminin singulier ?",
+      options: ["Le", "La", "Les", "Un"],
+      correctAnswer: "La",
+      explanation: "'La' est un déterminant féminin singulier (exemple : la table).",
+    ));
+    list.add(Exercise(
+      id: "french_conj_4",
+      lessonId: "french_l3",
+      category: "conjugaison",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quel verbe est conjugué à l'imparfait ?",
+      options: ["Je mangerai", "Je mangeais", "Je mange", "Je mangeasse"],
+      correctAnswer: "Je mangeais",
+      explanation: "La terminaison '-ais' correspond à l'imparfait de l'indicatif : je mangeais.",
+    ));
+
+    // Lesson 4 : Orthographe
+    list.add(Exercise(
+      id: "french_orth_1",
+      lessonId: "french_l4",
+      category: "orthographe",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Comment s'écrit correctement le mot pour désigner un oiseau de nuit ?",
+      options: ["Chou", "Choue", "Chouette", "Chouete"],
+      correctAnswer: "Chouette",
+      explanation: "Une Chouette s'écrit avec deux 't' !",
+      visualData: "🦉",
+    ));
+    list.add(Exercise(
+      id: "french_orth_2",
+      lessonId: "french_l4",
+      category: "orthographe",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "input",
+      question: "Écris le mot 'CHAT' au pluriel (plusieurs chats) :",
+      options: [],
+      correctAnswer: "chats",
+      explanation: "Bravo ! Pour mettre au pluriel, on ajoute un 's' à la fin : des chats.",
+    ));
+    list.add(Exercise(
+      id: "french_orth_3",
+      lessonId: "french_l4",
+      category: "orthographe",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quelle phrase est correctement orthographiée ?",
+      options: [
+        "Les enfant joue dehors.",
+        "Les enfants joues dehors.",
+        "Les enfants jouent dehors.",
+        "L'enfants jouent dehors."
+      ],
+      correctAnswer: "Les enfants jouent dehors.",
+      explanation: "Le sujet est pluriel ('Les enfants'), donc le verbe prend 'ent' à la fin ('jouent').",
+    ));
+    list.add(Exercise(
+      id: "french_orth_4",
+      lessonId: "french_l4",
+      category: "orthographe",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "true_false",
+      question: "Vrai ou Faux : Le mot 'papillon' s'écrit avec deux 'l'.",
+      options: ["Vrai", "Faux"],
+      correctAnswer: "Vrai",
+      explanation: "Vrai ! Papillon s'écrit bien p-a-p-i-l-l-o-n.",
+      visualData: "🦋",
+    ));
+
+    // Lesson 5 : Lecture & Compréhension
+    list.add(Exercise(
+      id: "french_read_1",
+      lessonId: "french_l5",
+      category: "lecture",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Lis cette phrase : 'Le chat boit du lait.' Quel animal boit du lait ?",
+      options: ["Le chien", "La souris", "Le chat", "L'oiseau"],
+      correctAnswer: "Le chat",
+      explanation: "La phrase dit bien que c'est le chat qui boit du lait !",
+      visualData: "🐱🍼",
+    ));
+    list.add(Exercise(
+      id: "french_read_2",
+      lessonId: "french_l5",
+      category: "lecture",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Lis le texte : 'Chaque matin, Nicolas met ses bottes de pluie jaunes et saute dans les flaques d'eau.' Quelle est la couleur des bottes de Nicolas ?",
+      options: ["Bleues", "Rouges", "Vertes", "Jaunes"],
+      correctAnswer: "Jaunes",
+      explanation: "Le texte mentionne des 'bottes de pluie jaunes'.",
+    ));
+    list.add(Exercise(
+      id: "french_read_3",
+      lessonId: "french_l5",
+      category: "lecture",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Lis l'énigme : 'Je vis dans l'océan, je respire sous l'eau grâce à mes branchies et j'ai des écailles.' Qui suis-je ?",
+      options: ["La baleine", "Le dauphin", "Le poisson", "La mouette"],
+      correctAnswer: "Le poisson",
+      explanation: "Le poisson respire sous l'eau et possède des écailles. La baleine et le dauphin sont des mammifères.",
+    ));
+  }
+
+  static void _addSciences(List<Exercise> list) {
+    // --- SCIENCES (25 EXERCICES) ---
+    // Lesson 1 : Le Corps Humain
+    list.add(Exercise(
+      id: "science_body_1",
+      lessonId: "science_l1",
+      category: "corps humain",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quel organe te permet d'écouter de la musique ? 🎧",
+      options: ["Les yeux", "Les oreilles", "Le nez", "La bouche"],
+      correctAnswer: "Les oreilles",
+      explanation: "Tes oreilles captent les sons de l'environnement !",
+    ));
+    list.add(Exercise(
+      id: "science_body_2",
+      lessonId: "science_l1",
+      category: "corps humain",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Quel organe pompe le sang dans tout ton corps ?",
+      options: ["Les poumons", "Le cerveau", "Le cœur", "L'estomac"],
+      correctAnswer: "Le cœur",
+      explanation: "Le cœur bat en permanence pour distribuer le sang et l'oxygène.",
+      visualData: "❤️",
+    ));
+    list.add(Exercise(
+      id: "science_body_3",
+      lessonId: "science_l1",
+      category: "corps humain",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Combien d'os possède environ un corps humain adulte ?",
+      options: ["50", "106", "206", "500"],
+      correctAnswer: "206",
+      explanation: "Le squelette d'un adulte comporte 206 os reliés par des articulations.",
+      visualData: "💀",
+    ));
+    list.add(Exercise(
+      id: "science_body_4",
+      lessonId: "science_l1",
+      category: "corps humain",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Combien de sens possèdent les êtres humains ?",
+      options: ["3", "4", "5", "6"],
+      correctAnswer: "5",
+      explanation: "Nous avons 5 sens : la vue, l'ouïe, le toucher, le goût et l'odorat !",
+    ));
+
+    // Lesson 2 : Le Système Solaire
+    list.add(Exercise(
+      id: "science_space_1",
+      lessonId: "science_l2",
+      category: "espace",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quelle est cette grosse boule lumineuse qui nous éclaire le jour ?",
+      options: ["La Lune", "La Terre", "Le Soleil", "Mars"],
+      correctAnswer: "Le Soleil",
+      explanation: "Le Soleil est l'étoile qui illumine et réchauffe notre planète !",
+      visualData: "☀️",
+    ));
+    list.add(Exercise(
+      id: "science_space_2",
+      lessonId: "science_l2",
+      category: "espace",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Sur quelle planète vivons-nous ?",
+      options: ["Mars", "La Terre", "Jupiter", "Vénus"],
+      correctAnswer: "La Terre",
+      explanation: "Nous vivons sur la Terre, appelée aussi la planète bleue.",
+      visualData: "🌍",
+    ));
+    list.add(Exercise(
+      id: "science_space_3",
+      lessonId: "science_l2",
+      category: "espace",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quelle est la planète la plus proche du Soleil ?",
+      options: ["Vénus", "Mercure", "La Terre", "Saturne"],
+      correctAnswer: "Mercure",
+      explanation: "Mercure est la première planète du système solaire en partant du Soleil.",
+    ));
+    list.add(Exercise(
+      id: "science_space_4",
+      lessonId: "science_l2",
+      category: "espace",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Combien de temps met la Terre pour faire un tour complet autour du Soleil ?",
+      options: ["24 heures", "28 jours", "365 jours (1 an)", "10 ans"],
+      correctAnswer: "365 jours (1 an)",
+      explanation: "La Terre orbite autour du soleil en 365 jours et un quart.",
+    ));
+
+    // Lesson 3 : Les Animaux & Plantes
+    list.add(Exercise(
+      id: "science_anim_1",
+      lessonId: "science_l3",
+      category: "animaux",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quel animal peut voler dans les airs ?",
+      options: ["Le lion 🦁", "L'oiseau 🐦", "Le poisson 🐟", "La grenouille 🐸"],
+      correctAnswer: "L'oiseau 🐦",
+      explanation: "L'oiseau possède des ailes pour planer et voler !",
+      visualData: "🐦",
+    ));
+    list.add(Exercise(
+      id: "science_anim_2",
+      lessonId: "science_l3",
+      category: "animaux",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "true_false",
+      question: "Vrai ou Faux : Le dauphin est un poisson.",
+      options: ["Vrai", "Faux"],
+      correctAnswer: "Faux",
+      explanation: "Faux ! Le dauphin est un mammifère marin. Il respire de l'air à la surface grâce à un évent.",
+      visualData: "🐬",
+    ));
+    list.add(Exercise(
+      id: "science_anim_3",
+      lessonId: "science_l3",
+      category: "animaux",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Quel mot désigne un animal qui mange uniquement d'autres animaux ?",
+      options: ["Herbivore", "Carnivore", "Omnivore", "Granivore"],
+      correctAnswer: "Carnivore",
+      explanation: "Un carnivore se nourrit de viande (ex: le lion, le loup).",
+    ));
+    list.add(Exercise(
+      id: "science_plant_1",
+      lessonId: "science_l3",
+      category: "plantes",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "De quoi une plante a-t-elle absolument besoin pour grandir ?",
+      options: ["De jus de fruits", "De terre, d'eau et de lumière", "De chocolat", "D'un lit douillet"],
+      correctAnswer: "De terre, d'eau et de lumière",
+      explanation: "Les plantes ont besoin d'eau, de la lumière du soleil et des nutriments du sol.",
+      visualData: "🌱☀️💦",
+    ));
+    list.add(Exercise(
+      id: "science_plant_2",
+      lessonId: "science_l3",
+      category: "plantes",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Quelle partie de la plante absorbe l'eau dans la terre ?",
+      options: ["Les feuilles", "Les fleurs", "Les racines", "La tige"],
+      correctAnswer: "Les racines",
+      explanation: "Les racines ancrent la plante et boivent l'eau contenue dans le sol.",
+    ));
+    list.add(Exercise(
+      id: "science_anim_4",
+      lessonId: "science_l3",
+      category: "animaux",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Qui a huit pattes et tisse une toile ?",
+      options: ["L'abeille", "La fourmi", "L'araignée", "La chenille"],
+      correctAnswer: "L'araignée",
+      explanation: "L'araignée est un arachnide et possède 8 pattes.",
+      visualData: "🕷️",
+    ));
+    list.add(Exercise(
+      id: "science_plant_3",
+      lessonId: "science_l3",
+      category: "plantes",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quel délicieux liquide sucré les abeilles fabriquent-elles avec le pollen des fleurs ?",
+      options: ["Du chocolat", "Du sirop", "Du miel", "Du lait"],
+      correctAnswer: "Du miel",
+      explanation: "Le miel est fabriqué par les abeilles grâce au nectar des fleurs.",
+      visualData: "🍯🐝",
+    ));
+
+    // Lesson 4 : Les États de la Matière / Météo
+    list.add(Exercise(
+      id: "science_weather_1",
+      lessonId: "science_l4",
+      category: "météo",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quand le ciel gronde, qu'il y a des éclairs et de la pluie, c'est :",
+      options: ["Une tempête de neige", "Un orage", "Une canicule", "Un arc-en-ciel"],
+      correctAnswer: "Un orage",
+      explanation: "Un orage s'accompagne d'éclairs, de tonnerre et de fortes averses !",
+      visualData: "⛈️",
+    ));
+    list.add(Exercise(
+      id: "science_weather_2",
+      lessonId: "science_l4",
+      category: "météo",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Qu'est-ce qui mesure la température de l'air ?",
+      options: ["Un baromètre", "Un thermomètre", "Une boussole", "Une montre"],
+      correctAnswer: "Un thermomètre",
+      explanation: "Le thermomètre mesure s'il fait chaud (degrés élevés) ou froid.",
+      visualData: "🌡️",
+    ));
+    list.add(Exercise(
+      id: "science_matter_1",
+      lessonId: "science_l4",
+      category: "matière",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Quand l'eau gèle et devient un glaçon, dans quel état est-elle ?",
+      options: ["Gazeux", "Liquide", "Solide", "Vapeur"],
+      correctAnswer: "Solide",
+      explanation: "La glace est de l'eau à l'état solide. Elle fond à plus de 0°C.",
+      visualData: "❄️🧊",
+    ));
+    list.add(Exercise(
+      id: "science_matter_2",
+      lessonId: "science_l4",
+      category: "matière",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quel gaz est essentiel à la respiration des humains et des animaux ?",
+      options: ["Le dioxyde de carbone", "L'hélium", "L'oxygène", "L'azote"],
+      correctAnswer: "L'oxygène",
+      explanation: "Nous inspirons de l'oxygène (O2) pour alimenter nos organes.",
+    ));
+
+    // Lesson 5 : Environnement & Nature
+    list.add(Exercise(
+      id: "science_env_1",
+      lessonId: "science_l5",
+      category: "environnement",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Où faut-il jeter une bouteille en plastique vide ?",
+      options: ["Par terre", "Dans la forêt", "Dans la poubelle de recyclage jaune", "Dans la rivière"],
+      correctAnswer: "Dans la poubelle de recyclage jaune",
+      explanation: "Il faut recycler le plastique pour protéger notre planète !",
+      visualData: "♻️",
+    ));
+    list.add(Exercise(
+      id: "science_env_2",
+      lessonId: "science_l5",
+      category: "environnement",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "true_false",
+      question: "Vrai ou Faux : L'eau douce est une ressource infinie qu'on peut gaspiller.",
+      options: ["Vrai", "Faux"],
+      correctAnswer: "Faux",
+      explanation: "Faux ! L'eau potable est rare et précieuse. Il faut la préserver en évitant le gaspillage.",
+    ));
+    list.add(Exercise(
+      id: "science_nat_1",
+      lessonId: "science_l5",
+      category: "phénomènes naturels",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Qu'est-ce qui provoque un arc-en-ciel dans le ciel ?",
+      options: [
+        "Le vent soufflant sur les nuages",
+        "La lumière du soleil traversant les gouttes de pluie",
+        "La poussière de l'espace",
+        "Le reflet de la mer"
+      ],
+      correctAnswer: "La lumière du soleil traversant les gouttes de pluie",
+      explanation: "La pluie sépare la lumière blanche du Soleil en toutes ses couleurs de base !",
+      visualData: "🌈",
+    ));
+    list.add(Exercise(
+      id: "science_nat_2",
+      lessonId: "science_l5",
+      category: "phénomènes naturels",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Comment appelle-t-on une montagne qui peut cracher de la lave chaude ?",
+      options: ["Une faille", "Un glacier", "Un volcan", "Une falaise"],
+      correctAnswer: "Un volcan",
+      explanation: "Un volcan en éruption libère de la lave et des cendres venues des profondeurs.",
+      visualData: "🌋",
+    ));
+    list.add(Exercise(
+      id: "science_env_3",
+      lessonId: "science_l5",
+      category: "environnement",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "true_false",
+      question: "Vrai ou Faux : Les arbres rejettent de l'oxygène dans l'air, ce qui nous aide à respirer.",
+      options: ["Vrai", "Faux"],
+      correctAnswer: "Vrai",
+      explanation: "Vrai ! Grâce à la photosynthèse, les forêts produisent l'oxygène indispensable à notre vie.",
+      visualData: "🌲",
+    ));
+    list.add(Exercise(
+      id: "science_nat_3",
+      lessonId: "science_l5",
+      category: "phénomènes naturels",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Quelle force invisible fait tomber les objets par terre quand on les lâche ?",
+      options: ["Le magnétisme", "La gravité", "La friction", "L'électricité"],
+      correctAnswer: "La gravité",
+      explanation: "La gravité de la Terre attire tout vers son centre, nous gardant les pieds sur terre !",
+    ));
+  }
+
+  static void _addLogic(List<Exercise> list) {
+    // --- LOGIQUE (25 EXERCICES) ---
+    // Lesson 1 : Suites & Séquences
+    list.add(Exercise(
+      id: "logic_seq_1",
+      lessonId: "logic_l1",
+      category: "suites",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Complète la suite : 🔴 🔵 🔴 🔵 ___ ?",
+      options: ["🔴", "🔵", "🟡", "🟢"],
+      correctAnswer: "🔴",
+      explanation: "La suite alterne Rouge et Bleu. Après le Bleu vient le Rouge !",
+      visualData: "🔴 🔵 🔴 🔵",
+    ));
+    list.add(Exercise(
+      id: "logic_seq_2",
+      lessonId: "logic_l1",
+      category: "suites",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Complète la suite logique : 2, 4, 6, 8, ___ ?",
+      options: ["9", "10", "11", "12"],
+      correctAnswer: "10",
+      explanation: "On ajoute 2 à chaque fois ! 8 + 2 = 10.",
+    ));
+    list.add(Exercise(
+      id: "logic_seq_3",
+      lessonId: "logic_l1",
+      category: "suites",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Trouve le nombre logique manquant : 1, 3, 9, ___ ?",
+      options: [],
+      correctAnswer: "27",
+      explanation: "Chaque nombre est multiplié par 3 ! 1x3=3, 3x3=9, 9x3=27.",
+    ));
+    list.add(Exercise(
+      id: "logic_seq_4",
+      lessonId: "logic_l1",
+      category: "suites",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Complète : Lundi, Mardi, Mercredi, ___ ?",
+      options: ["Vendredi", "Samedi", "Jeudi", "Dimanche"],
+      correctAnswer: "Jeudi",
+      explanation: "Jeudi est le jour qui suit le mercredi.",
+    ));
+    list.add(Exercise(
+      id: "logic_seq_5",
+      lessonId: "logic_l1",
+      category: "suites",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Complète la suite : 🅰️ 🅱️ 🅰️ 🅱️ ___ ?",
+      options: ["🅰️", "🅱️", "🆃", "🅾️"],
+      correctAnswer: "🅰️",
+      explanation: "C'est l'alternance A et B. Après B vient A !",
+    ));
+
+    // Lesson 2 : Énigmes de Déduction
+    list.add(Exercise(
+      id: "logic_obs_1",
+      lessonId: "logic_l2",
+      category: "observation",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Trouve l'intrus parmi ces mots :",
+      options: ["Voiture 🚗", "Vélo 🚲", "Banane 🍌", "Train 🚂"],
+      correctAnswer: "Banane 🍌",
+      explanation: "La banane est un fruit, alors que les autres sont des moyens de transport !",
+      visualData: "🚗 🚲 🍌 🚂",
+    ));
+    list.add(Exercise(
+      id: "logic_obs_2",
+      lessonId: "logic_l2",
+      category: "observation",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Qui est le plus lourd : une plume, un chat ou une fourmi ?",
+      options: ["La plume", "La fourmi", "Le chat"],
+      correctAnswer: "Le chat",
+      explanation: "Le chat is beaucoup plus gros et lourd que la plume et la fourmi.",
+      visualData: "🪶 🐱 🐜",
+    ));
+    list.add(Exercise(
+      id: "logic_obs_3",
+      lessonId: "logic_l2",
+      category: "observation",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Trouve l'intrus parmi ces formes :",
+      options: ["Cercle 🔵", "Sphère (bille) ⚽", "Rectangle 🟩", "Triangle 🔺"],
+      correctAnswer: "Sphère (bille) ⚽",
+      explanation: "La sphère est une forme en 3 dimensions (volume), alors que les autres sont plates (2 dimensions).",
+    ));
+    list.add(Exercise(
+      id: "logic_obs_4",
+      lessonId: "logic_l2",
+      category: "observation",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Si Paul est plus grand que Sophie, et Sophie est plus grande que Luc, qui est le plus petit ?",
+      options: ["Paul", "Sophie", "Luc", "On ne sait pas"],
+      correctAnswer: "Luc",
+      explanation: "Paul > Sophie > Luc. Donc Luc est le plus petit !",
+    ));
+    list.add(Exercise(
+      id: "logic_obs_5",
+      lessonId: "logic_l2",
+      category: "observation",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Lequel de ces éléments n'est PAS un mammifère ?",
+      options: ["Le singe", "Le dauphin", "Le pigeon", "Le chat"],
+      correctAnswer: "Le pigeon",
+      explanation: "Le pigeon est un oiseau (il pond des œufs et a des plumes). Les autres sont des mammifères.",
+      visualData: "🐦",
+    ));
+
+    // Lesson 3 : Labyrinthes & Puzzles
+    list.add(Exercise(
+      id: "logic_puzzle_1",
+      lessonId: "logic_l3",
+      category: "puzzles",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Si tu coupes un cercle en deux parties égales, qu'obtiens-tu ?",
+      options: ["Deux carrés", "Deux triangles", "Deux demi-cercles", "Une étoile"],
+      correctAnswer: "Deux demi-cercles",
+      explanation: "En coupant un cercle, on obtient deux moitiés de cercle appélées demi-cercles.",
+      visualData: "🌓",
+    ));
+    list.add(Exercise(
+      id: "logic_puzzle_2",
+      lessonId: "logic_l3",
+      category: "puzzles",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Une boîte cubique possède combien de faces ?",
+      options: ["4", "5", "6", "8"],
+      correctAnswer: "6",
+      explanation: "Un cube (comme un dé à jouer) a exactement 6 faces carrées.",
+      visualData: "🎲",
+    ));
+    list.add(Exercise(
+      id: "logic_puzzle_3",
+      lessonId: "logic_l3",
+      category: "puzzles",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Un puzzle carré de 3 pièces de côté possède combien de pièces au total ?",
+      options: ["6", "9", "12", "15"],
+      correctAnswer: "9",
+      explanation: "C'est un quadrillage de 3 x 3, ce qui donne 9 pièces au total !",
+    ));
+    list.add(Exercise(
+      id: "logic_puzzle_4",
+      lessonId: "logic_l3",
+      category: "puzzles",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Combien d'oreilles ont 3 lapins ensemble ?",
+      options: ["3", "4", "6", "8"],
+      correctAnswer: "6",
+      explanation: "Chaque lapin a 2 oreilles : 2 + 2 + 2 = 6 oreilles au total !",
+      visualData: "🐰🐰🐰",
+    ));
+    list.add(Exercise(
+      id: "logic_puzzle_5",
+      lessonId: "logic_l3",
+      category: "puzzles",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "input",
+      question: "Si tu plies une feuille de papier en deux, puis encore en deux, combien de rectangles obtiens-tu ?",
+      options: [],
+      correctAnswer: "4",
+      explanation: "Chaque pliage double le nombre de sections : 1 -> 2 -> 4 rectangles !",
+    ));
+
+    // Lesson 4 : Analyse & Mémoire
+    list.add(Exercise(
+      id: "logic_mem_1",
+      lessonId: "logic_l4",
+      category: "mémoire",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Regarde bien : 🍎 🍌 🍇. Quel fruit était au MILIEU ?",
+      options: ["La pomme 🍎", "La banane 🍌", "Le raisin 🍇", "La fraise 🍓"],
+      correctAnswer: "La banane 🍌",
+      explanation: "La banane était au milieu, entre la pomme et le raisin.",
+      visualData: "🍎 🍌 🍇",
+    ));
+    list.add(Exercise(
+      id: "logic_mem_2",
+      lessonId: "logic_l4",
+      category: "mémoire",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Retiens cette phrase : 'Le vélo rouge est sous l'arbre.' De quelle couleur est le vélo ?",
+      options: ["Bleu", "Rouge", "Vert", "Jaune"],
+      correctAnswer: "Rouge",
+      explanation: "La phrase disait : 'Le vélo rouge...'. Il est donc rouge !",
+    ));
+    list.add(Exercise(
+      id: "logic_mem_3",
+      lessonId: "logic_l4",
+      category: "mémoire",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Une suite de chiffres est : 3 - 8 - 1 - 5. Quel était le deuxième chiffre ?",
+      options: ["3", "8", "1", "5"],
+      correctAnswer: "8",
+      explanation: "Le deuxième chiffre de la suite '3 - 8 - 1 - 5' est 8 !",
+    ));
+
+    // Lesson 5 : Associations & Couleurs
+    list.add(Exercise(
+      id: "logic_color_1",
+      lessonId: "logic_l5",
+      category: "couleurs",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quelle couleur obtiens-tu si tu mélanges du BLEU et du JAUNE ?",
+      options: ["Rouge 🔴", "Orange 🟠", "Vert 🟢", "Violet 🟣"],
+      correctAnswer: "Vert 🟢",
+      explanation: "Mélanger du bleu et du jaune donne du vert !",
+      visualData: "🔵 + 🟡 = 🟢",
+    ));
+    list.add(Exercise(
+      id: "logic_color_2",
+      lessonId: "logic_l5",
+      category: "couleurs",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Quelle couleur donne le mélange du ROUGE et du BLEU ?",
+      options: ["Vert 🟢", "Violet 🟣", "Orange 🟠", "Gris ⚫"],
+      correctAnswer: "Violet 🟣",
+      explanation: "Rouge et Bleu font du Violet !",
+      visualData: "🔴 + 🔵 = 🟣",
+    ));
+    list.add(Exercise(
+      id: "logic_class_1",
+      lessonId: "logic_l5",
+      category: "classement",
+      difficulty: 1,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Classe ces animaux du plus PETIT au plus GRAND : Fourmi, Chat, Cheval.",
+      options: [
+        "Chat, Fourmi, Cheval",
+        "Fourmi, Chat, Cheval",
+        "Cheval, Chat, Fourmi",
+        "Fourmi, Cheval, Chat"
+      ],
+      correctAnswer: "Fourmi, Chat, Cheval",
+      explanation: "La fourmi est minuscule, le chat est moyen, et le cheval est très grand !",
+      visualData: "🐜 < 🐱 < 🐴",
+    ));
+    list.add(Exercise(
+      id: "logic_class_2",
+      lessonId: "logic_l5",
+      category: "classement",
+      difficulty: 2,
+      ageMin: 8,
+      ageMax: 9,
+      type: "qcm",
+      question: "Lequel de ces objets ne se classe PAS dans la catégorie 'Fournitures scolaires' ?",
+      options: ["Crayon", "Cahier", "Brosse à dents", "Gomme"],
+      correctAnswer: "Brosse à dents",
+      explanation: "La brosse à dents sert à se laver les dents, ce n'est pas pour l'école !",
+      visualData: "✏️ 📓 🪥",
+    ));
+    list.add(Exercise(
+      id: "logic_color_3",
+      lessonId: "logic_l5",
+      category: "couleurs",
+      difficulty: 1,
+      ageMin: 4,
+      ageMax: 5,
+      type: "qcm",
+      question: "Quelles couleurs forment le drapeau français ?",
+      options: ["Jaune, Vert, Rouge", "Bleu, Blanc, Rouge", "Noir, Jaune, Rouge", "Rouge, Blanc, Vert"],
+      correctAnswer: "Bleu, Blanc, Rouge",
+      explanation: "Le drapeau français est bleu, blanc, et rouge !",
+      visualData: "🇫🇷",
+    ));
+    list.add(Exercise(
+      id: "logic_class_3",
+      lessonId: "logic_l5",
+      category: "classement",
+      difficulty: 3,
+      ageMin: 10,
+      ageMax: 12,
+      type: "qcm",
+      question: "Qu'est-ce qui pèse le plus lourd : 1 kilo de plumes ou 1 kilo de plomb ?",
+      options: ["Le kilo de plumes", "Le kilo de plomb", "Ils pèsent le même poids"],
+      correctAnswer: "Ils pèsent le même poids",
+      explanation: "Ils pèsent tous les deux exactement 1 kilo, donc ils pèsent le même poids !",
+    ));
+    list.add(Exercise(
+      id: "logic_color_4",
+      lessonId: "logic_l5",
+      category: "couleurs",
+      difficulty: 2,
+      ageMin: 6,
+      ageMax: 7,
+      type: "qcm",
+      question: "Quelle couleur obtiens-tu en mélangeant du Rouge et du Jaune ?",
+      options: ["Vert", "Orange", "Violet", "Marron"],
+      correctAnswer: "Orange",
+      explanation: "Mélanger du Rouge et du Jaune produit de l'Orange !",
+      visualData: "🔴 + 🟡 = 🟠",
+    ));
+  }
+}
