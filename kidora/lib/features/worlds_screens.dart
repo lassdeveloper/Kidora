@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/routes/app_routes.dart';
 import '../core/theme/app_theme.dart';
 import '../providers/app_providers.dart';
-import '../models/world.dart';
-import '../models/lesson.dart';
 
 // ==========================================
 // ÉCRAN 7 : CARTE DES MONDES INTERACTIVE

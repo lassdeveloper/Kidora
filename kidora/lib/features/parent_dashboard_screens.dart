@@ -4,8 +4,6 @@ import '../core/routes/app_routes.dart';
 import '../core/theme/app_theme.dart';
 import '../providers/app_providers.dart';
 import '../models/child.dart';
-import '../models/app_settings.dart';
-import '../models/daily_limit.dart';
 import '../core/database/database_helper.dart';
 
 // ==========================================================

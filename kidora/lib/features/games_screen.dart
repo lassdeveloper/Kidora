@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../core/theme/app_theme.dart';
 import '../providers/app_providers.dart';
-import '../models/game.dart';
 import '../models/game_score.dart';
 
 // ==========================================
