@@ -31,7 +31,7 @@ class AppTheme {
         buttonColor: AppColors.primary,
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 4,
         shape: RoundedRectangleBorder(

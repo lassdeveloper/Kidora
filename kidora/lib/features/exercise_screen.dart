@@ -103,7 +103,6 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
         );
 
         // 5. Vérifier les badges (Trophées) débloqués
-        final badgeRepo = ref.read(badgeRepositoryProvider);
         final allAnswers = await exerciseRepo.getAnswersByChild(child.id!);
         final currentlyUnlocked = ref.read(badgesProvider);
         

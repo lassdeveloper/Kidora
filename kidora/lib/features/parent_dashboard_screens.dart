@@ -91,10 +91,12 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        border: Border(
-          bottom: BorderSide(
-            color: isSelected ? const Color(0xFFFF9F1C) : Colors.transparent,
-            width: 3,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: isSelected ? const Color(0xFFFF9F1C) : Colors.transparent,
+              width: 3,
+            ),
           ),
         ),
         child: Row(

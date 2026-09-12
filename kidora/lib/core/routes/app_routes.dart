@@ -42,8 +42,8 @@ class AppRoutes {
   static const String profileManagement = '/profile-management';
   static const String settings = '/settings';
 
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
+  static Route<dynamic> generateRoute(RouteSettings routeSettings) {
+    switch (routeSettings.name) {
       case splash:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case welcome:
@@ -51,10 +51,10 @@ class AppRoutes {
       case createProfile:
         return MaterialPageRoute(builder: (_) => const CreateProfileScreen());
       case avatar:
-        final childName = settings.arguments as String? ?? '';
+        final childName = routeSettings.arguments as String? ?? '';
         return MaterialPageRoute(builder: (_) => AvatarSelectionScreen(childName: childName));
       case ageLevel:
-        final args = settings.arguments as Map<String, dynamic>? ?? {};
+        final args = routeSettings.arguments as Map<String, dynamic>? ?? {};
         return MaterialPageRoute(builder: (_) => AgeLevelSelectionScreen(
           childName: args['name'] as String? ?? '',
           avatar: args['avatar'] as String? ?? '🐱',
@@ -75,15 +75,15 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SubjectWorldScreen(subjectId: 'logic'));
 
       case lesson:
-        final args = settings.arguments as Lesson;
+        final args = routeSettings.arguments as Lesson;
         return MaterialPageRoute(builder: (_) => LessonDetailScreen(lesson: args));
       
       case exercise:
-        final args = settings.arguments as Lesson;
+        final args = routeSettings.arguments as Lesson;
         return MaterialPageRoute(builder: (_) => ExerciseScreen(lesson: args));
       
       case result:
-        final args = settings.arguments as Map<String, dynamic>;
+        final args = routeSettings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(builder: (_) => ResultScreen(data: args));
       
       case profile:
@@ -112,7 +112,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: Center(
-              child: Text('Route non définie : ${settings.name}'),
+              child: Text('Route non définie : ${routeSettings.name}'),
             ),
           ),
         );
