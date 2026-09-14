@@ -65,7 +65,9 @@ analyzer:
     unnecessary_string_escapes: ignore
     unnecessary_string_interpolations: ignore
     unnecessary_this: ignore
-    use_clean_block_for_single_child_row_and_column: ignore
+linter:
+  rules:
+    prefer_const_constructors: true
     use_function_type_syntax_for_parameters: ignore
     use_key_in_widget_constructors: ignore
     use_rethrow_when_possible: ignore
