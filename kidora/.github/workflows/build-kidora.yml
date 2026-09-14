@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Verify flutter_lints
+        run: flutter pub deps | grep flutter_lints
+
       - name: Analyze project
         run: flutter analyze
 
