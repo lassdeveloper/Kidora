@@ -44,10 +44,19 @@ jobs:
         run: |
           echo "=== PUBSPEC ==="
           grep -A5 "dev_dependencies:" pubspec.yaml
+
+          echo "=== PUB GET ==="
+          flutter pub get
+
           echo "=== FLUTTER LINTS ==="
           flutter pub deps --style=compact | grep -i "flutter_lints" || true
-          echo "=== PUB CACHE ==="
-          flutter pub cache list | grep -i "flutter_lints" || true
+
+          echo "=== DART TOOL PACKAGE CONFIG ==="
+          if [ -f .dart_tool/package_config.json ]; then
+            grep -i "flutter_lints" .dart_tool/package_config.json || true
+          else
+            echo "package_config.json NOT FOUND"
+          fi
 
       - name: Analyze KIDORA
         run: flutter analyze
