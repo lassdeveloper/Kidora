@@ -39,7 +39,14 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-
+- name: Verify Flutter dependencies
+        run: |
+          echo "=== PUBSPEC ==="
+          grep -A5 "dev_dependencies:" pubspec.yaml
+          echo "=== FLUTTER LINTS ==="
+          flutter pub deps --style=compact | grep -i "flutter_lints" || true
+          echo "=== PUB CACHE ==="
+          flutter pub cache list | grep -i "flutter_lints" || true
       - name: Fix SQLite imports
         run: |
           python3 - <<'PY'
