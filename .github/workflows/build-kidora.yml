@@ -40,23 +40,29 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Verify Flutter dependencies
+      - name: Diagnose Flutter dependencies
         run: |
-          echo "=== PUBSPEC ==="
-          grep -A5 "dev_dependencies:" pubspec.yaml
+          echo "=== PUBSPEC DEV DEPENDENCIES ==="
+          sed -n '/dev_dependencies:/,/^flutter:/p' pubspec.yaml
 
           echo "=== PUB GET ==="
           flutter pub get
 
-          echo "=== FLUTTER LINTS ==="
+          echo "=== PUB DEPS ==="
+          flutter pub deps --style=compact
+
+          echo "=== FLUTTER LINTS LOCATION ==="
           flutter pub deps --style=compact | grep -i "flutter_lints" || true
 
-          echo "=== DART TOOL PACKAGE CONFIG ==="
+          echo "=== PACKAGE CONFIG ==="
           if [ -f .dart_tool/package_config.json ]; then
-            grep -i "flutter_lints" .dart_tool/package_config.json || true
+            grep -i -C 2 "flutter_lints" .dart_tool/package_config.json || true
           else
             echo "package_config.json NOT FOUND"
           fi
+
+          echo "=== FLUTTER LINTS CACHE ==="
+          find "$HOME/.pub-cache" -maxdepth 5 -type f -path "*flutter_lints*" 2>/dev/null | head -20 || true
 
       - name: Analyze KIDORA
         run: flutter analyze
