@@ -35,34 +35,32 @@ jobs:
         run: flutter --version
 
       - name: Generate Android project
-        run: flutter create --platforms=android .
+        run: |
+          flutter create --platforms=android .
+
+          echo "=== Configuration Android ==="
+
+          if [ -f android/app/build.gradle.kts ]; then
+            echo "Fichier Gradle Kotlin détecté"
+
+            sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 36/g' android/app/build.gradle.kts
+
+            sed -i -E 's/compileSdk = [0-9]+/compileSdk = 36/g' android/app/build.gradle.kts
+          fi
+
+          if [ -f android/app/build.gradle ]; then
+            echo "Fichier Gradle Groovy détecté"
+
+            sed -i 's/compileSdk flutter.compileSdkVersion/compileSdk 36/g' android/app/build.gradle
+
+            sed -i -E 's/compileSdk [0-9]+/compileSdk 36/g' android/app/build.gradle
+          fi
+
+          echo "=== Vérification compileSdk ==="
+          grep -R "compileSdk" -n android/app 2>/dev/null || true
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Diagnose Flutter dependencies
-        run: |
-          echo "=== PUBSPEC DEV DEPENDENCIES ==="
-          sed -n '/dev_dependencies:/,/^flutter:/p' pubspec.yaml
-
-          echo "=== PUB GET ==="
-          flutter pub get
-
-          echo "=== PUB DEPS ==="
-          flutter pub deps --style=compact
-
-          echo "=== FLUTTER LINTS LOCATION ==="
-          flutter pub deps --style=compact | grep -i "flutter_lints" || true
-
-          echo "=== PACKAGE CONFIG ==="
-          if [ -f .dart_tool/package_config.json ]; then
-            grep -i -C 2 "flutter_lints" .dart_tool/package_config.json || true
-          else
-            echo "package_config.json NOT FOUND"
-          fi
-
-          echo "=== FLUTTER LINTS CACHE ==="
-          find "$HOME/.pub-cache" -maxdepth 5 -type f -path "*flutter_lints*" 2>/dev/null | head -20 || true
 
       - name: Analyze KIDORA
         run: flutter analyze
