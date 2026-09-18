@@ -375,7 +375,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
                   ],
                 ),
               );
-            }).toList(),
+            }),
         ],
       ),
     );
