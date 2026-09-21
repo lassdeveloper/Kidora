@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/routes/app_routes.dart';
 import '../core/theme/app_theme.dart';
 import '../providers/app_providers.dart';
-
+import '../models/progress.dart';
 // ==========================================
 // ÉCRAN 7 : CARTE DES MONDES INTERACTIVE
 // ==========================================
@@ -229,12 +229,14 @@ class SubjectWorldScreen extends ConsumerWidget {
     final subjectColor = _getSubjectColor(subjectId);
     final subjectEmoji = _getSubjectEmoji(subjectId);
     final subjectName = _getSubjectName(subjectId);
-
-    final progress = progressList.firstWhere(
-      (p) => p.subjectId == subjectId,
-      orElse: () => _EmptyProgress(child.id!, subjectId) as dynamic,
-    );
-
+final progress = progressList.firstWhere(
+  (p) => p.subjectId == subjectId,
+  orElse: () => Progress(
+    childId: child.id!,
+    subjectId: subjectId,
+    lastActive: DateTime.now(),
+  ),
+);
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
